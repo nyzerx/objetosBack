@@ -38,7 +38,7 @@ public class PublicacionController {
     @Autowired
     private ObjetoService objetoService;
 
-    @PostMapping("")
+    @PostMapping("/nf")
     public ResponseEntity<Void> crearPublicacion(@RequestBody Publicacion publicacion) {
        boolean creaPublicacion = publicacionService.crearPublicacion(publicacion);
        if(creaPublicacion){
