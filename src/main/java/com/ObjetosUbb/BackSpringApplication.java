@@ -41,6 +41,6 @@ public class BackSpringApplication {
 		corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "OPTIONS", "DELETE"));
 		UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
 		urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
-		return new CorsFilter();
+		return new CorsFilter(urlBasedCorsConfigurationSource);
 	}
 }
