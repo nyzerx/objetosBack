@@ -23,7 +23,7 @@ public class BackSpringApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("https://angular-objetosubb.herokuapp.com/").allowedMethods("*").allowedHeaders("*");
+				registry.addMapping("/**").allowedOrigins("https://angular-objetosubb.herokuapp.com/objetosUbb/").allowedMethods("*").allowedHeaders("*");
 			}
 		};
 	}
@@ -32,7 +32,7 @@ public class BackSpringApplication {
 	public CorsFilter corsFilter() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		corsConfiguration.setAllowCredentials(true);
-		corsConfiguration.setAllowedOrigins(Arrays.asList("https://angular-objetosubb.herokuapp.com/"));
+		corsConfiguration.setAllowedOrigins(Arrays.asList("https://angular-objetosubb.herokuapp.com/objetosUbb/"));
 		corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
 				"Accept", "Authorization", "Origin, Accept", "X-Requested-With",
 				"Access-Control-Request-Method", "Access-Control-Request-Headers"));
