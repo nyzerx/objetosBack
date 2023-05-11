@@ -36,7 +36,7 @@ public class UsuarioController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-	@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "https://angular-objetosubb.herokuapp.com/")
 	@PostMapping(value = "")
     public ResponseEntity<Void> newUsuario(@RequestBody Usuario usuario) {
         boolean allright = userService.save(usuario);
@@ -46,7 +46,7 @@ public class UsuarioController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://angular-objetosubb.herokuapp.com/")
 	@GetMapping(value = "/{email}/{pswd}")
     public ResponseEntity<Usuario> getUserByEmailAndPswd(@PathVariable String email,@PathVariable  String pswd) {
 		Usuario user = null;
