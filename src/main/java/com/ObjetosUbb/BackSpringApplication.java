@@ -23,7 +23,7 @@ public class BackSpringApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("https://angular-objetosubb.herokuapp.com/").allowedMethods("*").allowedHeaders("*");
+				registry.addMapping("/**").allowedOrigins("https://frontangular-production.up.railway.app/").allowedMethods("*").allowedHeaders("*");
 			}
 		};
 	}
