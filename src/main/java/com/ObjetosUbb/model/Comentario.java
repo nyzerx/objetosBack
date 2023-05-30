@@ -2,17 +2,22 @@ package com.ObjetosUbb.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
 @Table(name = "comentario")
+@Data
 public class Comentario {
     
     @Id
@@ -25,55 +30,15 @@ public class Comentario {
     @Column(name = "texto_co",nullable = false)
     private String texto_co;
 
-    @ManyToOne()
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @JsonBackReference()
     @JoinColumn(name = "id_us")
     private Usuario usuario;
 
-    @ManyToOne()
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @JsonBackReference()
     @JoinColumn(name = "id_pu", nullable = false)
     private Publicacion publicacion;
 
-    public Comentario() {
-    }
-
-    public long getId_co() {
-        return id_co;
-    }
-
-    public void setId_co(long id_co) {
-        this.id_co = id_co;
-    }
-
-    public Date getFecha_co() {
-        return fecha_co;
-    }
-
-    public void setFecha_co(Date fecha_co) {
-        this.fecha_co = fecha_co;
-    }
-
-    public String getTexto_co() {
-        return texto_co;
-    }
-
-    public void setTexto_co(String texto_co) {
-        this.texto_co = texto_co;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Publicacion getPublicacion() {
-        return publicacion;
-    }
-
-    public void setPublicacion(Publicacion publicacion) {
-        this.publicacion = publicacion;
-    }
    
 }

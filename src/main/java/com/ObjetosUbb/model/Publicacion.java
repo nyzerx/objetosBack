@@ -1,13 +1,19 @@
 package com.ObjetosUbb.model;
 
 
+
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,149 +22,45 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
 @Table(name = "publicacion")
-public class Publicacion {
+@Data
+public class Publicacion{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_pu", nullable = false)
-    private Long id_pu;
+    @Column(name = "id_pu")
+    private long id_pu;
 
-    @ManyToOne
-    @JoinColumn(name = "id_us", nullable = false)
+    @ManyToOne(optional = true,fetch = FetchType.LAZY)
+    @JsonBackReference()
+    @JoinColumn(name = "id_us")
     private Usuario usuario;
 
-    @Column(name = "fecha_pu", nullable = false)
+    @Column(name = "fecha_pu")
     private LocalDateTime fechaHora;
 
-    @ManyToOne
-    @JoinColumn(name = "id_tipopu", nullable = false)
+    @ManyToOne(optional = true,fetch = FetchType.LAZY)
+    @JsonBackReference()
+    @JoinColumn(name = "id_tipopu")
     private TipoPublicacion tipoPublicacion;
 
-    @Column(name = "estado_pu", nullable = false)
+    @Column(name = "estado_pu")
     private int estado_pu;
 
    
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JsonManagedReference()
     @JoinColumn(name = "id_obj")
+    @JsonIdentityReference(alwaysAsId = true)
     private Objeto objeto;
 
+   
+    @JsonManagedReference()
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "publicacion")
     private List<Comentario> comentarios;
 
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
-    public Publicacion() {
-    }
-
-    
-
-    
-    public Long getId_pu() {
-        return id_pu;
-    }
-
-
-
-
-    public void setId_pu(Long id_pu) {
-        this.id_pu = id_pu;
-    }
-
-
-
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-
-
-
-    public LocalDateTime getFechaHora() {
-        return fechaHora;
-    }
-
-
-
-
-    public void setFechaHora(LocalDateTime fechaHora) {
-        this.fechaHora = fechaHora;
-    }
-
-
-
-
-    public TipoPublicacion getTipoPublicacion() {
-        return tipoPublicacion;
-    }
-
-
-
-
-    public void setTipoPublicacion(TipoPublicacion tipoPublicacion) {
-        this.tipoPublicacion = tipoPublicacion;
-    }
-
-
-
-
-    public int getEstado_pu() {
-        return estado_pu;
-    }
-
-
-
-
-    public void setEstado_pu(int estado_pu) {
-        this.estado_pu = estado_pu;
-    }
-
-
-
-
-    public Objeto getObjeto() {
-        return objeto;
-    }
-
-
-
-
-    public void setObjeto(Objeto objeto) {
-        this.objeto = objeto;
-    }
-
-
-
-
-    public List<Comentario> getComentarios() {
-        return comentarios;
-    }
-
-
-
-
-    public void setComentarios(List<Comentario> comentarios) {
-        this.comentarios = comentarios;
-    }
-
-
-
-
-    public static DateTimeFormatter getFormatter() {
-        return formatter;
-    }
-
-
-
-
-    
-
-    public void setFechaHora(String fechaHora) {
-        this.fechaHora = LocalDateTime.parse(fechaHora, formatter);
-    }
-
-   
 }

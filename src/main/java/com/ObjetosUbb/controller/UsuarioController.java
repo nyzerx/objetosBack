@@ -23,9 +23,7 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService userService;
 	
-	public UsuarioController(UsuarioService userService) {
-        this.userService = userService;
-    }
+
 	
 	@GetMapping(value = "")
     public ResponseEntity<List<Usuario>> getAllUsers() {
@@ -36,7 +34,7 @@ public class UsuarioController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-	@CrossOrigin(origins = "https://angular-objetosubb.herokuapp.com/")
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping(value = "")
     public ResponseEntity<Void> newUsuario(@RequestBody Usuario usuario) {
         boolean allright = userService.save(usuario);
@@ -46,7 +44,7 @@ public class UsuarioController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-    @CrossOrigin(origins = "https://angular-objetosubb.herokuapp.com/")
+    @CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(value = "/{email}/{pswd}")
     public ResponseEntity<Usuario> getUserByEmailAndPswd(@PathVariable String email,@PathVariable  String pswd) {
 		Usuario user = null;

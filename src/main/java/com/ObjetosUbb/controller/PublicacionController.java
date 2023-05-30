@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ObjetosUbb.model.Publicacion;
+import com.ObjetosUbb.model.modelDTO.PubliDTO;
 import com.ObjetosUbb.service.PublicacionService;
 import com.ObjetosUbb.service.UsuarioService;
 import com.ObjetosUbb.service.ComentarioService;
@@ -38,9 +40,12 @@ public class PublicacionController {
     @Autowired
     private ObjetoService objetoService;
 
-    @PostMapping("/nf")
-    public ResponseEntity<Void> crearPublicacion(@RequestBody Publicacion publicacion) {
+    @PostMapping("/save")
+    public ResponseEntity<Void> crearPublicacion(@RequestBody PubliDTO publicacion) {
+
+       
        boolean creaPublicacion = publicacionService.crearPublicacion(publicacion);
+       
        if(creaPublicacion){
             return new ResponseEntity<>(HttpStatus.CREATED);
        }else{
@@ -58,6 +63,7 @@ public class PublicacionController {
           return publicacionService.obtenerDatosPublicacion();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{idpub}")
     public ResponseEntity<Publicacion>getPublicacionById(@PathVariable long idpub){
           Optional<Publicacion> Publicaciones = publicacionService.obtenerPublicacionPorId(idpub);
