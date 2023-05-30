@@ -27,8 +27,4 @@ public interface ObjetoRepository extends JpaRepository<Objeto, Long>{
     @Query(value = "select id_obj from objeto where nombre_obj = :nombre",nativeQuery = true)
     Optional<Long> idObjetobyNombre(@Param("nombre")String nombre);
 
-    
-
-
-
 }

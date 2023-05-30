@@ -43,7 +43,6 @@ public class PublicacionController {
     @PostMapping("/save")
     public ResponseEntity<Void> crearPublicacion(@RequestBody PubliDTO publicacion) {
 
-       
        boolean creaPublicacion = publicacionService.crearPublicacion(publicacion);
        
        if(creaPublicacion){
