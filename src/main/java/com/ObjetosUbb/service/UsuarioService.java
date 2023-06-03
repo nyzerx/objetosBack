@@ -28,7 +28,7 @@ public class UsuarioService {
     public Boolean EsAdmin(long id) {
         Optional<Usuario> s = usuarioRepository.findById(id);
         if (s.isPresent()) {
-            if(s.get().getRol()==1){
+            if(s.get().getRol()==2){
                 return true;
             }else{
                 return false;
