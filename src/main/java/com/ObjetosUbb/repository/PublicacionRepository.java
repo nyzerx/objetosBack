@@ -2,6 +2,7 @@ package com.ObjetosUbb.repository;
 
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -25,4 +26,7 @@ public interface PublicacionRepository extends JpaRepository<Publicacion, Long>{
     );
 
     Optional<Publicacion> findById(Long id);
+
+    @Query(value = "SELECT * FROM publicacion WHERE id_us = :id",nativeQuery = true)
+    List<Publicacion> getPostsbyIdUser(@Param("id") Long id);
 }

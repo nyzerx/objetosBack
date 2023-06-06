@@ -1,7 +1,10 @@
 package com.ObjetosUbb.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ObjetosUbb.model.Publicacion;
 import com.ObjetosUbb.model.modelDTO.PubliDTO;
@@ -96,4 +100,33 @@ public class PublicacionController {
                return "No tiene permisos para eliminar";
           }
     }
+
+    @PostMapping("/upload")
+    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file){
+         
+          String uploadsDir = "src/main/resources/uploads";
+          String filename = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();
+          File fileimage = new File(uploadsDir,filename);
+
+          try {
+               file.transferTo(fileimage);
+          
+               return ResponseEntity.ok("Imagen subida exitosamente");
+              
+          } catch (IOException e) {
+              return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al subir la imagen");
+          }
+          
+    }
+
+    @GetMapping("/reportes/{idUser}")
+    public ResponseEntity<List<Publicacion>> getPostsByIdUser(@PathVariable Long idUser) {
+        List<Publicacion> publicacions = publicacionService.getPostByIdUser(idUser);
+        if(!publicacions.isEmpty()){
+          return new ResponseEntity<>(publicacions,HttpStatus.OK);
+        }else{
+          return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
 }

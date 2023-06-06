@@ -1,6 +1,7 @@
 package com.ObjetosUbb.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,6 +70,10 @@ public class PublicacionService {
            publ.add(p);
         }
         return publ;
+    }
+
+    public List<Publicacion> getPostByIdUser(Long idUser){
+        return publicacionRepository.getPostsbyIdUser(idUser);
     }
 
     public List<Publicacion> obtenerPublicacionPorNombre(String nombre) {
