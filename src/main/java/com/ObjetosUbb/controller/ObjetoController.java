@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ObjetosUbb.model.Objeto;
-import com.ObjetosUbb.service.CategoriaService;
 import com.ObjetosUbb.service.ObjetoService;
 
 @RestController
@@ -21,10 +20,11 @@ import com.ObjetosUbb.service.ObjetoService;
 public class ObjetoController {
     
     
-
+     @Autowired
+     private ObjetoService objetoService;
 
      
-    /*@PostMapping("")
+    @PostMapping("")
     public ResponseEntity<Void> crearObjeto(@RequestBody Objeto objeto) {
        boolean crearObjeto = objetoService.crearObjeto(objeto);
        if(crearObjeto){
@@ -42,7 +42,7 @@ public class ObjetoController {
           }else{
                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
           }
-    }*/
+    }
 
 
 }

@@ -107,4 +107,12 @@ public class PublicacionService {
             return false;
         }
     }
+
+    public List<Publi> ultimasPublicaciones(){
+        List<Publi> list = new ArrayList<>();
+        for (Publicacion publicacion : publicacionRepository.ultimPublicacions()) {
+            list.add(new Publi(publicacion.getId_pu(), publicacion.getObjeto().getNombre_obj(), publicacion.getObjeto().getImagen_obj(),publicacion.getUsuario().getId(),publicacion.getFechaHora()));
+        }
+        return list;
+    }
 }

@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.ObjetosUbb.model.Publi;
 import com.ObjetosUbb.model.Publicacion;
 
 @Repository
@@ -29,4 +30,7 @@ public interface PublicacionRepository extends JpaRepository<Publicacion, Long>{
 
     @Query(value = "SELECT * FROM publicacion WHERE id_us = :id",nativeQuery = true)
     List<Publicacion> getPostsbyIdUser(@Param("id") Long id);
+
+    @Query(value = "SELECT * FROM publicacion ORDER BY fecha_pu DESC",nativeQuery=true)
+    List<Publicacion> ultimPublicacions();
 }

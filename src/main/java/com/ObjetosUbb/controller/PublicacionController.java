@@ -56,6 +56,10 @@ public class PublicacionController {
        }
     }
 
+    @GetMapping("/ultimas")
+    public List <Publi> ultimPublicacions(){
+          return publicacionService.ultimasPublicaciones();
+    }
     @GetMapping("/todos")
     public List <Publicacion>getPublicacionById(){
           return publicacionService.obtenerPublicacion();
