@@ -115,4 +115,17 @@ public class PublicacionService {
         }
         return list;
     }
+
+    @Transactional
+    public void actualizarEstadoPublicacion(Long id_pu) {
+        // Encuentra la publicación por su ID
+        Publicacion publicacion = publicacionRepository.findById(id_pu)
+                .orElseThrow(() -> new RuntimeException("Publicación no encontrada"));
+
+        // Actualiza el estado de la publicación a 1 (encontrado por su dueño)
+        publicacion.setEstado_pu(1);
+
+        // Guarda los cambios en la base de datos
+        publicacionRepository.save(publicacion);
+    }
 }

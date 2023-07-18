@@ -36,14 +36,6 @@ public class Publi {
         this.idp = idp;
     }
 
-    public String getCategoria() {
-        return this.Categoria;
-    }
-
-    public void setCategoria(String Categoria) {
-        this.Categoria = Categoria;
-    }
-    
     public String getNombre() {
         return nombre;
     }
@@ -75,4 +67,11 @@ public class Publi {
         this.fechaHora = fechaHora;
     }
 
+    public String getCategoria() {
+        return this.Categoria;
+    }
+
+    public void setCategoria(String Categoria) {
+        this.Categoria = Categoria;
+    }
 }

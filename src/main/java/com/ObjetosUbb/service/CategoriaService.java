@@ -18,5 +18,4 @@ public class CategoriaService {
         return categoriaRepository.getCategoriaById(id);
     }
 
-
 }

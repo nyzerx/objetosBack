@@ -1,7 +1,5 @@
 package com.ObjetosUbb.model;
 
-
-
 import java.time.LocalDateTime;
 
 import java.util.List;
@@ -23,6 +21,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
+import com.ObjetosUbb.model.FormularioSolicitud;
 
 @Entity
 @Table(name = "publicacion")
@@ -57,6 +56,8 @@ public class Publicacion{
     @JsonIdentityReference(alwaysAsId = true)
     private Objeto objeto;
 
+    @OneToOne
+    private FormularioSolicitud formularioSolicitud;
    
     @JsonManagedReference()
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "publicacion")

@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -71,7 +73,7 @@ public class PublicacionController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/{idpub}")
+    @GetMapping("/nf/{idpub}")
     public ResponseEntity<Publicacion>getPublicacionById(@PathVariable long idpub){
           Optional<Publicacion> Publicaciones = publicacionService.obtenerPublicacionPorId(idpub);
           if(Publicaciones.isPresent()){
@@ -130,6 +132,17 @@ public class PublicacionController {
           return new ResponseEntity<>(publicacions,HttpStatus.OK);
         }else{
           return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/actualizar/{id_pu}")
+    public ResponseEntity<?> actualizarEstadoPublicacion(@PathVariable Long id_pu) {
+        try {
+            // Actualiza el estado de la publicación usando el servicio PublicacionService
+            publicacionService.actualizarEstadoPublicacion(id_pu);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error al actualizar el estado de la publicación");
         }
     }
     
