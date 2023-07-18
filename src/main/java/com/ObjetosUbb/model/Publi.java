@@ -8,8 +8,17 @@ public class Publi {
     private String nombre;
     private String imagen;
     private long idu;
+    private String Categoria;
     private LocalDateTime fechaHora;
 
+    public Publi(long idp, String nombre, String imagen, long idu,LocalDateTime fechaHora, String  Categoria) {
+        this.idp = idp;
+        this.nombre = nombre;
+        this.imagen = imagen;
+        this.idu = idu;
+        this.fechaHora = fechaHora;
+        this.Categoria = Categoria;
+    }
     public Publi(long idp, String nombre, String imagen, long idu,LocalDateTime fechaHora) {
         this.idp = idp;
         this.nombre = nombre;
@@ -27,6 +36,14 @@ public class Publi {
         this.idp = idp;
     }
 
+    public String getCategoria() {
+        return this.Categoria;
+    }
+
+    public void setCategoria(String Categoria) {
+        this.Categoria = Categoria;
+    }
+    
     public String getNombre() {
         return nombre;
     }

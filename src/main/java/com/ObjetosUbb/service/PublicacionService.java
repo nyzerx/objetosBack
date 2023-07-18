@@ -66,7 +66,7 @@ public class PublicacionService {
         List<Publi> publ = new ArrayList<>(); 
         for (Publicacion publicacion : publicacionRepository.findAll()) {
            Publi p = new Publi(publicacion.getId_pu(), publicacion.getObjeto().getNombre_obj(),publicacion.getObjeto().getImagen_obj(),
-           publicacion.getUsuario().getId(),publicacion.getFechaHora());
+           publicacion.getUsuario().getId(),publicacion.getFechaHora(),publicacion.getObjeto().getCategoria().getNombre_cat());
            publ.add(p);
         }
         return publ;
