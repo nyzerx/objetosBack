@@ -18,7 +18,7 @@ public class BackSpringApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("http://frontangular-production-938f.up.railway.app").allowedMethods("*").allowedHeaders("*");
+				registry.addMapping("/**").allowedOrigins("https://frontangular-production-938f.up.railway.app").allowedMethods("*").allowedHeaders("*");
 			}
 		};
 	}
