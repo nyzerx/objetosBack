@@ -23,9 +23,7 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService userService;
 	
-
-	
-	@GetMapping(value = "")
+	@GetMapping(value = "/todos")
     public ResponseEntity<List<Usuario>> getAllUsers() {
         List<Usuario> userList = userService.findAllUsers();
         if (!userList.isEmpty()){
