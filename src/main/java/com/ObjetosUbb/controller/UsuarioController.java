@@ -18,7 +18,7 @@ import com.ObjetosUbb.model.Usuario;
 import com.ObjetosUbb.service.UsuarioService;
 
 @RestController
-@RequestMapping("/usuario/")
+@RequestMapping("/usuario")
 public class UsuarioController {
 	@Autowired
 	private UsuarioService userService;
