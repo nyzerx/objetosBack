@@ -1,34 +1,24 @@
 package com.ObjetosUbb.controller;
 
-import org.springframework.web.bind.annotation.PutMapping;
-
-import java.util.Optional;
-
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.ObjetosUbb.model.Publicacion;
-import com.ObjetosUbb.service.PublicacionService;
+import com.ObjetosUbb.model.FormularioSolicitud;
+import com.ObjetosUbb.service.FormularioSolicitudService;
 
 @RestController
+@RequestMapping("/formulario-solicitud")
 public class FormularioSolicitudController {
 
-    private final PublicacionService publicacionService;
+    private final FormularioSolicitudService formularioSolicitudService;
 
-    public FormularioSolicitudController(PublicacionService publicacionService) {
-        this.publicacionService = publicacionService;
+    public FormularioSolicitudController(FormularioSolicitudService formularioSolicitudService) {
+        this.formularioSolicitudService = formularioSolicitudService;
     }
- 
-    @PutMapping("/publicacion/{idPublicacion}/estado/{nuevoEstado}")
-    public Publicacion actualizarEstadoPublicacion(@PathVariable Long idPublicacion, @PathVariable Integer nuevoEstado) {
-    Optional<Publicacion> optionalPublicacion = publicacionService.obtenerPublicacionPorId(idPublicacion);
-    if (optionalPublicacion.isPresent()) {
-        Publicacion publicacion = optionalPublicacion.get();
-        publicacion.setEstado_pu(nuevoEstado);
-        return publicacionService.guardarPublicacion(publicacion);
-    } else {
-        // Manejar el caso de que no se encuentre la publicación con el idp especificado
-        return null;
-    }
-}
 
+    @PostMapping("/guardar")
+    public FormularioSolicitud guardarFormularioSolicitud(@RequestBody FormularioSolicitud formularioSolicitud) {
+        return formularioSolicitudService.crearFormularioSolicitud(formularioSolicitud);
+    }
 }
