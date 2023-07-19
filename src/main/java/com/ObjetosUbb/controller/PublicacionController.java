@@ -78,7 +78,7 @@ public class PublicacionController {
           return publicacionService.obtenerDatosPublicacion();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://frontangular-production-938f.up.railway.app")
     @GetMapping("/nf/{idpub}")
     public ResponseEntity<Publicacion>getPublicacionById(@PathVariable long idpub){
           Optional<Publicacion> Publicaciones = publicacionService.obtenerPublicacionPorId(idpub);
