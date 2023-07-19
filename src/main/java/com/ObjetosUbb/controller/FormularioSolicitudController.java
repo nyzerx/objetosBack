@@ -14,7 +14,7 @@ public class FormularioSolicitudController {
     public FormularioSolicitudController(PublicacionService publicacionService) {
         this.publicacionService = publicacionService;
     }
-
+/* 
     @PutMapping("/publicacion/{idPublicacion}/estado/{nuevoEstado}")
     public Publicacion actualizarEstadoPublicacion(@PathVariable Long idPublicacion, @PathVariable Integer nuevoEstado) {
         Publicacion publicacion = publicacionService.obtenerPublicacionPorId(idPublicacion);
@@ -24,5 +24,5 @@ public class FormularioSolicitudController {
         } else {
             throw new ResourceNotFoundException("Publicación no encontrada con ID: " + idPublicacion);
         }
-    }
+    }*/
 }
