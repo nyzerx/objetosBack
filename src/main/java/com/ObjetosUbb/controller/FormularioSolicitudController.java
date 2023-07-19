@@ -1,28 +1,28 @@
 package com.ObjetosUbb.controller;
 
-import com.ObjetosUbb.model.FormularioSolicitud;
-import com.ObjetosUbb.service.FormularioSolicitudService;
-import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import com.ObjetosUbb.model.Publicacion;
+import com.ObjetosUbb.service.PublicacionService;
 
 @RestController
 public class FormularioSolicitudController {
 
-    private final FormularioSolicitudService formularioSolicitudService;
+    private final PublicacionService publicacionService;
 
-    @Autowired
-    public FormularioSolicitudController(FormularioSolicitudService formularioSolicitudService) {
-        this.formularioSolicitudService = formularioSolicitudService;
+    public FormularioSolicitudController(PublicacionService publicacionService) {
+        this.publicacionService = publicacionService;
     }
 
-    @PostMapping("/solicitud/{idPublicacion}")
-    public ResponseEntity<FormularioSolicitud> crearFormularioSolicitud(@Valid @RequestBody FormularioSolicitud formularioSolicitud) {
-        FormularioSolicitud newFormularioSolicitud = formularioSolicitudService.crearFormularioSolicitud(formularioSolicitud);
-        return new ResponseEntity<>(newFormularioSolicitud, HttpStatus.CREATED);
+    @PutMapping("/publicacion/{idPublicacion}/estado/{nuevoEstado}")
+    public Publicacion actualizarEstadoPublicacion(@PathVariable Long idPublicacion, @PathVariable Integer nuevoEstado) {
+        Publicacion publicacion = publicacionService.obtenerPublicacionPorId(idPublicacion);
+        if (publicacion != null) {
+            publicacion.setEstado_pu(nuevoEstado);
+            return publicacionService.guardarPublicacion(publicacion);
+        } else {
+            throw new ResourceNotFoundException("Publicación no encontrada con ID: " + idPublicacion);
+        }
     }
 }

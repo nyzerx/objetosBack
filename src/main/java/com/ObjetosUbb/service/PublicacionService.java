@@ -111,10 +111,34 @@ public class PublicacionService {
     public List<Publi> ultimasPublicaciones(){
         List<Publi> list = new ArrayList<>();
         for (Publicacion publicacion : publicacionRepository.ultimPublicacions()) {
-            list.add(new Publi(publicacion.getId_pu(), publicacion.getObjeto().getNombre_obj(), publicacion.getObjeto().getImagen_obj(),publicacion.getUsuario().getId(),publicacion.getFechaHora()));
+            list.add(new Publi(publicacion.getId_pu(), 
+            publicacion.getObjeto().getNombre_obj(), 
+            publicacion.getObjeto().getImagen_obj(),
+            publicacion.getUsuario().getId(),
+            publicacion.getFechaHora(),
+            publicacion.getObjeto().getCategoria().getNombre_cat()));
         }
         return list;
     }
+
+    public Publi obtenerPublicacionPorId2(Long idp){
+        Publicacion publicacion = publicacionRepository.obtenerPublicacionPorId(idp);
+        if(publicacion != null){
+            return new Publi(publicacion.getId_pu(),
+             publicacion.getObjeto().getNombre_obj(),
+              publicacion.getObjeto().getImagen_obj(),
+              publicacion.getObjeto().getDescripcion_obj(),
+              publicacion.getUsuario().getId(),
+              publicacion.getFechaHora(),
+              publicacion.getObjeto().getCategoria().getNombre_cat(),
+              publicacion.getUsuario().getNombre(),
+                publicacion.getEstado_pu()
+              );
+        } else {
+            // Manejar el caso de que no se encuentre la publicación con el idp especificado
+            return null;
+        }
+    }    
 
     @Transactional
     public void actualizarEstadoPublicacion(Long id_pu) {

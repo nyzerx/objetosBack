@@ -33,4 +33,7 @@ public interface PublicacionRepository extends JpaRepository<Publicacion, Long>{
 
     @Query(value = "SELECT * FROM publicacion ORDER BY fecha_pu DESC",nativeQuery=true)
     List<Publicacion> ultimPublicacions();
+
+    @Query(value = "SELECT * FROM publicacion WHERE id_pu = :idp",nativeQuery=true)
+    Publicacion obtenerPublicacionPorId(@Param("idp") Long idp);
 }

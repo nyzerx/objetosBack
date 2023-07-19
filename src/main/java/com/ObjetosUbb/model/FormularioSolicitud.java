@@ -8,6 +8,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 
 @Entity
@@ -22,6 +25,7 @@ public class FormularioSolicitud {
     private String apellido;
     private String correo;
     private String motivo;
+    private LocalDateTime fechaSolicitud;
 
     @Column(name = "id_pub")
     private Long idPublicacion;
@@ -38,7 +42,25 @@ public class FormularioSolicitud {
         this.correo = correo;
         this.motivo = motivo;
         this.idPublicacion = idPublicacion;
+        this.fechaSolicitud = LocalDateTime.now();
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public LocalDateTime getFechaSolicitud() {
+        return fechaSolicitud;
+    }
+
+    public void setFechaSolicitud(LocalDateTime fechaSolicitud) {
+        this.fechaSolicitud = fechaSolicitud;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
 
     public String getApellido() {
         return apellido;

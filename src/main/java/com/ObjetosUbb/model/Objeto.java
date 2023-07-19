@@ -60,6 +60,4 @@ public class Objeto {
     @JsonIdentityReference(alwaysAsId = true)
     private List<Ubicacion> misUbicaciones;
   
-
-    
 }
