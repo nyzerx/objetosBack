@@ -152,4 +152,8 @@ public class PublicacionService {
         // Guarda los cambios en la base de datos
         publicacionRepository.save(publicacion);
     }
+
+    public Publicacion guardarPublicacion(Publicacion publicacion) {
+        return publicacionRepository.save(publicacion);
+    }
 }
