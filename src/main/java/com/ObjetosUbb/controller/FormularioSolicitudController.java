@@ -19,6 +19,11 @@ public class FormularioSolicitudController {
 
     @PostMapping("/guardar")
     public FormularioSolicitud guardarFormularioSolicitud(@RequestBody FormularioSolicitud formularioSolicitud) {
-        return formularioSolicitudService.crearFormularioSolicitud(formularioSolicitud);
+        return formularioSolicitudService.crearFormularioSolicitud(
+            formularioSolicitud.getNombre(),
+            formularioSolicitud.getApellido(),
+            formularioSolicitud.getCorreo(),
+            formularioSolicitud.getMotivo()
+        );
     }
 }

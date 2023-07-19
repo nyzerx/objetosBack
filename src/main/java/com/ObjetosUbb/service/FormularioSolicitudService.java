@@ -15,7 +15,8 @@ public class FormularioSolicitudService {
         this.formularioSolicitudRepository = formularioSolicitudRepository;
     }
 
-    public FormularioSolicitud crearFormularioSolicitud(FormularioSolicitud formularioSolicitud) {
+    public FormularioSolicitud crearFormularioSolicitud(String nombre, String apellido, String correo, String motivo) {
+        FormularioSolicitud formularioSolicitud = new FormularioSolicitud(nombre, apellido, correo, motivo);
         return formularioSolicitudRepository.save(formularioSolicitud);
     }
 }

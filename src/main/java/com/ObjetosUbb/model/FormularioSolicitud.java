@@ -1,17 +1,11 @@
 package com.ObjetosUbb.model;
 
-import com.ObjetosUbb.model.Publicacion;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
-
-import javax.persistence.Column;
 
 @Entity
 @Table(name = "formulario_solicitud")
@@ -27,40 +21,29 @@ public class FormularioSolicitud {
     private String motivo;
     private LocalDateTime fechaSolicitud;
 
-    @Column(name = "id_pub")
-    private Long idPublicacion=0L;
-
-    @OneToOne(mappedBy = "formularioSolicitud")
-    private Publicacion publicacion;
-
     public FormularioSolicitud() {
+        // Constructor vacío requerido por JPA
     }
 
-    public FormularioSolicitud(String nombre, String apellido, String correo, String motivo, Long idPublicacion) {
+    public FormularioSolicitud(String nombre, String apellido, String correo, String motivo) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
         this.motivo = motivo;
-        this.idPublicacion = idPublicacion;
         this.fechaSolicitud = LocalDateTime.now();
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public LocalDateTime getFechaSolicitud() {
-        return fechaSolicitud;
-    }
-
-    public void setFechaSolicitud(LocalDateTime fechaSolicitud) {
-        this.fechaSolicitud = fechaSolicitud;
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
 
     public String getApellido() {
         return apellido;
@@ -86,12 +69,11 @@ public class FormularioSolicitud {
         this.motivo = motivo;
     }
 
-    public Long getIdPublicacion() {
-        return idPublicacion;
+    public LocalDateTime getFechaSolicitud() {
+        return fechaSolicitud;
     }
 
-    public void setIdPublicacion(Long idPublicacion) {
-        this.idPublicacion = idPublicacion;
+    public void setFechaSolicitud(LocalDateTime fechaSolicitud) {
+        this.fechaSolicitud = fechaSolicitud;
     }
-    
 }
