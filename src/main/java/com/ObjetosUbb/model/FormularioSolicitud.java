@@ -28,7 +28,7 @@ public class FormularioSolicitud {
     private LocalDateTime fechaSolicitud;
 
     @Column(name = "id_pub")
-    private Long idPublicacion;
+    private Long idPublicacion=0L;
 
     @OneToOne(mappedBy = "formularioSolicitud")
     private Publicacion publicacion;
